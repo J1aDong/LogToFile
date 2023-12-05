@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'maven-publish'
 
 android {
     compileSdk 30
@@ -26,7 +26,24 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
 }
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            maven(MavenPublication) {
+                // Applies the component for the release build variant.
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.itgoyo.logtofilelibrary'
+                artifactId = 'final'
+                version = '1.0'
+            }
+        }
+    }
+}
+
 
 dependencies {
 
